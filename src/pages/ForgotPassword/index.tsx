@@ -4,6 +4,7 @@ import {
   Card,
   Input,
   Typography,
+  message,
 } from 'antd';
 import {
   Formik,
@@ -73,6 +74,10 @@ const ForgotPassword = (): React.JSX.Element => {
         confirmPassword:
           values.confirmPassword,
       });
+
+      message.success(
+        'Password updated successfully.',
+      );
 
       helpers.setStatus({
         type: 'success',
