@@ -6,7 +6,7 @@ import {
   ArrowLeftOutlined,
   HomeOutlined,
 } from '@ant-design/icons';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import './NotFound.css';
 
 const NotFound = (): React.JSX.Element => {

@@ -1,6 +1,6 @@
 import { Button, Col, Row, Space, Typography } from 'antd';
 import './HeroSection.css';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const { Title, Paragraph, Text } = Typography;
 

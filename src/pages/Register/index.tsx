@@ -10,7 +10,7 @@ import {
   Form as FormikForm,
   type FormikHelpers,
 } from 'formik';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useAuth } from '../../context/AuthContext';
 import type { RegisterRequest } from '../../types/auth';

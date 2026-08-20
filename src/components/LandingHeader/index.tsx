@@ -1,5 +1,5 @@
 import { Button, Layout, Typography } from 'antd';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import './LandingHeader.css';
 
 const { Header } = Layout;

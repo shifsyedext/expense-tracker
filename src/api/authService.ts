@@ -15,9 +15,12 @@ import {
   updateProfileStub,
 } from './authStubApi';
 
+import axiosInstance from './axiosInstance';
+
 export const login = async (
   request: LoginRequest,
 ): Promise<AuthResponse> => {
+  void axiosInstance;
   return loginStub(request);
 };
 

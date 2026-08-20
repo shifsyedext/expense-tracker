@@ -13,7 +13,7 @@ import {
 import {
   useLocation,
   useNavigate,
-} from 'react-router';
+} from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './AppNavigation.css';
 
