@@ -18,12 +18,32 @@ import './ForgotPassword.css';
 
 const { Title, Paragraph, Text } = Typography;
 
-const validationSchema: Yup.ObjectSchema<ForgotPasswordRequest> =
+const validationSchema =
   Yup.object({
     email: Yup.string()
       .trim()
-      .email('Please enter a valid email address.')
+      .email(
+        'Please enter a valid email address.',
+      )
       .required('Email is required.'),
+
+    newPassword: Yup.string()
+      .min(
+        8,
+        'Password must be at least 8 characters.',
+      )
+      .required(
+        'New password is required.',
+      ),
+
+    confirmPassword: Yup.string()
+      .oneOf(
+        [Yup.ref('newPassword')],
+        'Passwords do not match.',
+      )
+      .required(
+        'Please confirm your password.',
+      ),
   });
 
 interface FormStatus {
@@ -36,6 +56,8 @@ const ForgotPassword = (): React.JSX.Element => {
 
   const initialValues: ForgotPasswordRequest = {
     email: '',
+    newPassword: '',
+    confirmPassword: '',
   };
 
   const handleSubmit = async (
@@ -47,13 +69,18 @@ const ForgotPassword = (): React.JSX.Element => {
     try {
       await forgotPassword({
         email: values.email.trim(),
+        newPassword: values.newPassword,
+        confirmPassword:
+          values.confirmPassword,
       });
 
       helpers.setStatus({
         type: 'success',
         message:
-          'If an account exists for this email, password reset instructions have been sent.',
+          'Password updated successfully. Please sign in with your new password.',
       });
+
+      helpers.resetForm();
     } catch (error: unknown) {
       const message =
         error instanceof Error
@@ -84,12 +111,13 @@ const ForgotPassword = (): React.JSX.Element => {
               level={1}
               className="forgot-password-page__title"
             >
-              Forgot your password?
+              Reset Password
             </Title>
 
             <Paragraph className="forgot-password-page__description">
-              Enter your email address and we'll help you
-              get back into your account.
+              Enter your email address and
+              choose a new password for your
+              account.
             </Paragraph>
           </div>
 
@@ -118,7 +146,8 @@ const ForgotPassword = (): React.JSX.Element => {
                   />
                 )}
 
-                {status?.type === 'success' && (
+                {status?.type ===
+                  'success' && (
                   <Alert
                     className="forgot-password-page__alert"
                     type="success"
@@ -137,7 +166,7 @@ const ForgotPassword = (): React.JSX.Element => {
                       htmlFor="forgot-password-email"
                       className="forgot-password-page__label"
                     >
-                      Email address
+                      Email Address
                     </label>
 
                     <Input
@@ -149,33 +178,110 @@ const ForgotPassword = (): React.JSX.Element => {
                       autoComplete="email"
                       value={values.email}
                       status={
-                        touched.email && errors.email
+                        touched.email &&
+                        errors.email
                           ? 'error'
                           : undefined
                       }
-                      aria-invalid={
-                        touched.email && errors.email
-                          ? 'true'
-                          : 'false'
+                      onChange={
+                        handleChange
                       }
-                      aria-describedby={
-                        touched.email && errors.email
-                          ? 'forgot-password-email-error'
-                          : undefined
-                      }
-                      onChange={handleChange}
                       onBlur={handleBlur}
                     />
 
-                    {touched.email && errors.email && (
-                      <Text
-                        id="forgot-password-email-error"
-                        type="danger"
-                        className="forgot-password-page__error"
-                      >
-                        {errors.email}
-                      </Text>
-                    )}
+                    {touched.email &&
+                      errors.email && (
+                        <Text
+                          type="danger"
+                          className="forgot-password-page__error"
+                        >
+                          {
+                            errors.email
+                          }
+                        </Text>
+                      )}
+                  </div>
+
+                  <div className="forgot-password-page__field">
+                    <label
+                      htmlFor="newPassword"
+                      className="forgot-password-page__label"
+                    >
+                      New Password
+                    </label>
+
+                    <Input.Password
+                      id="newPassword"
+                      name="newPassword"
+                      size="large"
+                      placeholder="Enter new password"
+                      value={
+                        values.newPassword
+                      }
+                      status={
+                        touched.newPassword &&
+                        errors.newPassword
+                          ? 'error'
+                          : undefined
+                      }
+                      onChange={
+                        handleChange
+                      }
+                      onBlur={handleBlur}
+                    />
+
+                    {touched.newPassword &&
+                      errors.newPassword && (
+                        <Text
+                          type="danger"
+                          className="forgot-password-page__error"
+                        >
+                          {
+                            errors.newPassword
+                          }
+                        </Text>
+                      )}
+                  </div>
+
+                  <div className="forgot-password-page__field">
+                    <label
+                      htmlFor="confirmPassword"
+                      className="forgot-password-page__label"
+                    >
+                      Confirm Password
+                    </label>
+
+                    <Input.Password
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      size="large"
+                      placeholder="Confirm password"
+                      value={
+                        values.confirmPassword
+                      }
+                      status={
+                        touched.confirmPassword &&
+                        errors.confirmPassword
+                          ? 'error'
+                          : undefined
+                      }
+                      onChange={
+                        handleChange
+                      }
+                      onBlur={handleBlur}
+                    />
+
+                    {touched.confirmPassword &&
+                      errors.confirmPassword && (
+                        <Text
+                          type="danger"
+                          className="forgot-password-page__error"
+                        >
+                          {
+                            errors.confirmPassword
+                          }
+                        </Text>
+                      )}
                   </div>
 
                   <Button
@@ -183,11 +289,15 @@ const ForgotPassword = (): React.JSX.Element => {
                     htmlType="submit"
                     size="large"
                     block
-                    loading={isSubmitting}
-                    disabled={isSubmitting}
+                    loading={
+                      isSubmitting
+                    }
+                    disabled={
+                      isSubmitting
+                    }
                     className="forgot-password-page__submit"
                   >
-                    Send Reset Instructions
+                    Reset Password
                   </Button>
                 </FormikForm>
 

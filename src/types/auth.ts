@@ -19,7 +19,9 @@ export interface RegisterRequest {
 }
 
 export interface ForgotPasswordRequest {
-  readonly email: string;
+  email: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 
 export interface AuthResponse {

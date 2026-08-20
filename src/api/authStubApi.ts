@@ -9,8 +9,8 @@ import type {
 import {
   createStubUser,
   deleteStubUser,
-  findStubUserById,
   findStubUserByEmail,
+  findStubUserById,
   updateStubUser,
 } from '../stubs/auth';
 
@@ -21,9 +21,9 @@ const createToken = (
 };
 
 const removePassword = (
-  user: {
-    readonly password: string;
-  } & User,
+  user: User & {
+    password: string;
+  },
 ): User => {
   const {
     password: _password,
@@ -36,10 +36,6 @@ const removePassword = (
 export const loginStub = async (
   request: LoginRequest,
 ): Promise<AuthResponse> => {
-  await new Promise<void>((resolve) => {
-    window.setTimeout(resolve, 500);
-  });
-
   const user = findStubUserByEmail(
     request.email,
   );
@@ -62,20 +58,17 @@ export const loginStub = async (
 export const registerStub = async (
   request: RegisterRequest,
 ): Promise<AuthResponse> => {
-  await new Promise<void>((resolve) => {
-    window.setTimeout(resolve, 500);
-  });
-
   const existingUser =
     findStubUserByEmail(request.email);
 
-  if (existingUser !== undefined) {
+  if (existingUser) {
     throw new Error(
       'An account with this email already exists.',
     );
   }
 
-  const user = createStubUser(request);
+  const user =
+    createStubUser(request);
 
   return {
     user: removePassword(user),
@@ -86,13 +79,10 @@ export const registerStub = async (
 export const getProfileStub = async (
   userId: string,
 ): Promise<User> => {
-  await new Promise<void>((resolve) => {
-    window.setTimeout(resolve, 500);
-  });
+  const user =
+    findStubUserById(userId);
 
-  const user = findStubUserById(userId);
-
-  if (user === undefined) {
+  if (!user) {
     throw new Error(
       'Unable to load profile.',
     );
@@ -104,13 +94,10 @@ export const getProfileStub = async (
 export const updateProfileStub = async (
   user: User,
 ): Promise<User> => {
-  await new Promise<void>((resolve) => {
-    window.setTimeout(resolve, 500);
-  });
+  const updatedUser =
+    updateStubUser(user);
 
-  const updatedUser = updateStubUser(user);
-
-  if (updatedUser === undefined) {
+  if (!updatedUser) {
     throw new Error(
       'Unable to update profile.',
     );
@@ -122,11 +109,8 @@ export const updateProfileStub = async (
 export const deleteProfileStub = async (
   userId: string,
 ): Promise<void> => {
-  await new Promise<void>((resolve) => {
-    window.setTimeout(resolve, 500);
-  });
-
-  const deleted = deleteStubUser(userId);
+  const deleted =
+    deleteStubUser(userId);
 
   if (!deleted) {
     throw new Error(
@@ -135,16 +119,41 @@ export const deleteProfileStub = async (
   }
 };
 
-export const forgotPasswordStub = async (
-  request: ForgotPasswordRequest,
-): Promise<void> => {
-  await new Promise<void>((resolve) => {
-    window.setTimeout(resolve, 500);
-  });
+export const forgotPasswordStub =
+  async (
+    request: ForgotPasswordRequest,
+  ): Promise<void> => {
+    const user =
+      findStubUserByEmail(
+        request.email.trim(),
+      );
 
-  if (!request.email.trim()) {
-    throw new Error(
-      'Email is required.',
-    );
-  }
-};
+    if (!user) {
+      throw new Error(
+        'No account found with this email.',
+      );
+    }
+
+    if (
+      request.newPassword.length < 8
+    ) {
+      throw new Error(
+        'Password must be at least 8 characters.',
+      );
+    }
+
+    if (
+      request.newPassword !==
+      request.confirmPassword
+    ) {
+      throw new Error(
+        'Passwords do not match.',
+      );
+    }
+
+    updateStubUser({
+      id: user.id,
+      password:
+        request.newPassword,
+    });
+  };

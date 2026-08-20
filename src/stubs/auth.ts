@@ -4,7 +4,7 @@ import type {
 } from '../types/auth';
 
 export interface AuthStubUser extends User {
-  readonly password: string;
+  password: string;
 }
 
 export const authStubUser: AuthStubUser = {
@@ -16,11 +16,21 @@ export const authStubUser: AuthStubUser = {
   password: 'password123',
 };
 
-const STORAGE_KEY = 'expense_tracker_mock_users';
+const STORAGE_KEY =
+  'expense_tracker_mock_users';
 
 const defaultUsers: AuthStubUser[] = [
   authStubUser,
 ];
+
+const saveUsers = (
+  users: AuthStubUser[],
+): void => {
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(users),
+  );
+};
 
 const loadUsers = (): AuthStubUser[] => {
   const storedUsers =
@@ -32,52 +42,24 @@ const loadUsers = (): AuthStubUser[] => {
   }
 
   try {
-    const users =
-      JSON.parse(storedUsers) as AuthStubUser[];
-
-    const hasDemoUser = users.some(
-      (user) =>
-        user.id === authStubUser.id,
-    );
-
-    if (!hasDemoUser) {
-      const updatedUsers = [
-        authStubUser,
-        ...users,
-      ];
-
-      saveUsers(updatedUsers);
-
-      return updatedUsers;
-    }
-
-    return users;
+    return JSON.parse(
+      storedUsers,
+    ) as AuthStubUser[];
   } catch {
     saveUsers(defaultUsers);
-
     return defaultUsers;
   }
 };
 
-const saveUsers = (
-  users: AuthStubUser[],
-): void => {
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(users),
-  );
-};
-
-export const getStubUsers = (): AuthStubUser[] => {
-  return loadUsers();
-};
+export const getStubUsers =
+  (): AuthStubUser[] => {
+    return loadUsers();
+  };
 
 export const findStubUserByEmail = (
   email: string,
 ): AuthStubUser | undefined => {
-  const users = loadUsers();
-
-  return users.find(
+  return loadUsers().find(
     (user) =>
       user.email.toLowerCase() ===
       email.trim().toLowerCase(),
@@ -87,9 +69,7 @@ export const findStubUserByEmail = (
 export const findStubUserById = (
   userId: string,
 ): AuthStubUser | undefined => {
-  const users = loadUsers();
-
-  return users.find(
+  return loadUsers().find(
     (user) => user.id === userId,
   );
 };
@@ -102,48 +82,46 @@ export const createStubUser = (
   const newUser: AuthStubUser = {
     id: `user-${Date.now()}`,
     email: request.email.trim(),
-    firstName: request.firstName.trim(),
-    lastName: request.lastName.trim(),
+    firstName:
+      request.firstName.trim(),
+    lastName:
+      request.lastName.trim(),
     avatarUrl: null,
     password: request.password,
   };
 
-  saveUsers([
-    ...users,
-    newUser,
-  ]);
+  users.push(newUser);
+
+  saveUsers(users);
 
   return newUser;
 };
 
 export const updateStubUser = (
-  updatedUser: User,
+  updatedUser: Partial<AuthStubUser> & {
+    id: string;
+  },
 ): AuthStubUser | undefined => {
   const users = loadUsers();
 
-  const existingUser = users.find(
+  const index = users.findIndex(
     (user) => user.id === updatedUser.id,
   );
 
-  if (existingUser === undefined) {
+  if (index === -1) {
     return undefined;
   }
 
-  const updatedStubUser: AuthStubUser = {
-    ...existingUser,
+  const mergedUser: AuthStubUser = {
+    ...users[index],
     ...updatedUser,
   };
 
-  const updatedUsers = users.map(
-    (user) =>
-      user.id === updatedUser.id
-        ? updatedStubUser
-        : user,
-  );
+  users[index] = mergedUser;
 
-  saveUsers(updatedUsers);
+  saveUsers(users);
 
-  return updatedStubUser;
+  return mergedUser;
 };
 
 export const deleteStubUser = (
@@ -151,19 +129,17 @@ export const deleteStubUser = (
 ): boolean => {
   const users = loadUsers();
 
-  const userExists = users.some(
-    (user) => user.id === userId,
-  );
-
-  if (!userExists) {
-    return false;
-  }
-
-  const remainingUsers = users.filter(
+  const filteredUsers = users.filter(
     (user) => user.id !== userId,
   );
 
-  saveUsers(remainingUsers);
+  if (
+    filteredUsers.length === users.length
+  ) {
+    return false;
+  }
+
+  saveUsers(filteredUsers);
 
   return true;
 };
