@@ -1,0 +1,47 @@
+.home-page {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.home-page__hero {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+}
+
+.home-page__content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-page__title {
+  margin: 0;
+  font-size: 48px;
+  line-height: 1.2;
+}
+
+.home-page__description {
+  max-width: 640px;
+  margin: 24px auto 0;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+@media (max-width: 767px) {
+  .home-page__hero {
+    min-height: calc(100vh - 72px);
+    padding: 24px 16px;
+  }
+
+  .home-page__title {
+    font-size: 36px;
+  }
+
+  .home-page__description {
+    font-size: 18px;
+  }
+}

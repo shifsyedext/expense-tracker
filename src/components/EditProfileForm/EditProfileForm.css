@@ -1,0 +1,99 @@
+.edit-profile-form {
+  margin-top: 24px;
+  border-radius: 12px;
+}
+
+.edit-profile-form__title {
+  margin-top: 0 !important;
+  margin-bottom: 24px !important;
+}
+
+.edit-profile-form__alert {
+  margin-bottom: 24px;
+}
+
+.edit-profile-form__avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  margin-bottom: 32px;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+}
+
+.edit-profile-form__avatar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-profile-form__avatar-label {
+  font-size: 16px;
+}
+
+.edit-profile-form__avatar-help {
+  font-size: 14px;
+}
+
+.edit-profile-form__avatar-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.edit-profile-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edit-profile-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-profile-form__label {
+  font-weight: 600;
+  color: #374151;
+}
+
+@media (max-width: 767px) {
+  .edit-profile-form__avatar-section {
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .edit-profile-form__avatar-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 479px) {
+  .edit-profile-form__avatar-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edit-profile-form__avatar-actions {
+    align-items: center;
+    width: 100%;
+  }
+
+  .edit-profile-form__avatar-buttons {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .edit-profile-form__avatar-buttons
+    .ant-upload,
+  .edit-profile-form__avatar-buttons
+    .ant-btn {
+    width: 100%;
+  }
+}

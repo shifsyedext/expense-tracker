@@ -1,0 +1,112 @@
+.register-page {
+  min-height: 100vh;
+  padding: 48px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+}
+
+.register-page__container {
+  width: 100%;
+  max-width: 560px;
+}
+
+.register-page__card {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.register-page__header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.register-page__eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #1677ff;
+}
+
+.register-page__title {
+  margin: 0 0 12px !important;
+  font-size: 34px !important;
+  line-height: 1.2 !important;
+  color: #111827 !important;
+}
+
+.register-page__description {
+  margin: 0 !important;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.register-page__alert {
+  margin-bottom: 24px;
+}
+
+.register-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.register-page__name-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.register-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.register-page__label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.register-page__error {
+  font-size: 13px;
+}
+
+.register-page__submit {
+  min-height: 44px;
+}
+
+.register-page__login {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .register-page {
+    padding: 24px 12px;
+  }
+
+  .register-page__card {
+    border-radius: 12px;
+  }
+
+  .register-page__name-row {
+    grid-template-columns: 1fr;
+  }
+
+  .register-page__title {
+    font-size: 30px !important;
+  }
+}
+.register-page__back {
+  width: 100%;
+  margin-bottom: 16px;
+}

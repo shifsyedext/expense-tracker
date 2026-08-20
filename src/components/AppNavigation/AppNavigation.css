@@ -1,0 +1,91 @@
+.app-navigation {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 72px;
+  padding: 0 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.app-navigation__brand {
+  flex-shrink: 0;
+}
+
+.app-navigation__brand-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.app-navigation__menu {
+  flex: 1;
+  min-width: 0;
+  border-bottom: none;
+}
+
+.app-navigation__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.app-navigation__user-name {
+  font-weight: 600;
+  color: #374151;
+}
+
+.app-navigation__logout {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #374151;
+}
+
+.app-navigation__logout:hover {
+  color: #111827 !important;
+  background: #f3f4f6 !important;
+}
+
+@media (max-width: 767px) {
+  .app-navigation {
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .app-navigation__brand-text {
+    font-size: 16px;
+  }
+
+  .app-navigation__user-name {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .app-navigation {
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .app-navigation__brand-text {
+    font-size: 15px;
+  }
+
+  .app-navigation__user-name {
+    display: none;
+  }
+
+  .app-navigation__logout {
+    padding-inline: 8px;
+  }
+
+  .app-navigation__logout {
+    font-size: 0;
+  }
+
+  .app-navigation__logout .anticon {
+    font-size: 18px;
+  }
+}

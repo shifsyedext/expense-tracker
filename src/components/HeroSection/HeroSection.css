@@ -1,0 +1,149 @@
+.hero-section {
+  width: 100%;
+  padding: 96px 24px;
+  background: #f8fafc;
+}
+
+.hero-section__container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-section__content {
+  max-width: 700px;
+}
+
+.hero-section__eyebrow {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #1677ff;
+}
+
+.hero-section__title {
+  margin: 0 0 24px !important;
+  font-size: 56px !important;
+  line-height: 1.1 !important;
+  color: #111827 !important;
+}
+
+.hero-section__description {
+  max-width: 650px;
+  margin-bottom: 32px !important;
+  font-size: 19px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.hero-section__actions {
+  display: flex;
+}
+
+.hero-section__primary-action,
+.hero-section__secondary-action {
+  min-width: 130px;
+}
+
+.hero-section__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+
+.hero-section__visual-card {
+  width: 260px;
+  height: 300px;
+  padding: 40px 28px;
+  border: 1px solid #dbeafe;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  transform: rotate(3deg);
+}
+
+.hero-section__visual-line {
+  height: 18px;
+  margin-bottom: 24px;
+  border-radius: 9px;
+  background: #e5e7eb;
+}
+
+.hero-section__visual-line:nth-child(1) {
+  width: 70%;
+  background: #dbeafe;
+}
+
+.hero-section__visual-line:nth-child(2) {
+  width: 90%;
+}
+
+.hero-section__visual-line:nth-child(3) {
+  width: 60%;
+}
+
+.hero-section__visual-line:nth-child(4) {
+  width: 80%;
+}
+
+@media (max-width: 1023px) {
+  .hero-section {
+    padding: 72px 24px;
+  }
+
+  .hero-section__title {
+    font-size: 48px !important;
+  }
+
+  .hero-section__visual {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 56px 16px;
+  }
+
+  .hero-section__eyebrow {
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+
+  .hero-section__title {
+    font-size: 38px !important;
+  }
+
+  .hero-section__description {
+    font-size: 17px;
+  }
+
+  .hero-section__visual {
+    min-height: 220px;
+  }
+
+  .hero-section__visual-card {
+    width: 220px;
+    height: 240px;
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero-section__actions {
+    width: 100%;
+  }
+
+  .hero-section__primary-action,
+  .hero-section__secondary-action {
+    width: 100%;
+  }
+
+  .hero-section__visual-card {
+    width: 190px;
+    height: 210px;
+  }
+}

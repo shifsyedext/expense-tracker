@@ -1,0 +1,276 @@
+.dashboard-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.dashboard-page__content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 48px 56px;
+}
+
+.dashboard-page__welcome {
+  margin-bottom: 32px;
+}
+
+.dashboard-page__title {
+  margin-bottom: 8px !important;
+}
+
+.dashboard-page__description {
+  margin-bottom: 0;
+  color: #6b7280;
+}
+
+.dashboard-page__summary {
+  width: 100%;
+}
+
+.dashboard-page__transactions {
+  width: 100%;
+  margin-top: 32px;
+}
+
+@media (max-width: 1023px) {
+  .dashboard-page__content {
+    padding: 32px 24px 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .dashboard-page__content {
+    padding: 24px 16px 40px;
+  }
+
+  .dashboard-page__welcome {
+    margin-bottom: 24px;
+  }
+
+  .dashboard-page__title {
+    font-size: 28px !important;
+  }
+
+  .dashboard-page__description {
+    font-size: 14px;
+  }
+
+  .dashboard-page__transactions {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 479px) {
+  .dashboard-page__content {
+    padding: 20px 12px 32px;
+  }
+
+  .dashboard-page__title {
+    font-size: 24px !important;
+  }
+}
+
+.dashboard-page__loading {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-page__charts {
+  margin-top: 16px;
+}
+
+.dashboard-page__chart {
+  width: 100%;
+}
+
+.dashboard-page__category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.dashboard-page__category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-page__charts {
+  margin-top: 16px;
+}
+
+.dashboard-page__card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.dashboard-page__card-title {
+  margin: 0 0 4px !important;
+}
+
+.dashboard-page__monthly-chart {
+  width: 100%;
+  min-height: 360px;
+}
+
+.dashboard-page__category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.dashboard-page__category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dashboard-page__category-item:last-child {
+  border-bottom: none;
+}
+
+.dashboard-page__category-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-page__category-dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+}
+
+.dashboard-page__category-value {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.dashboard-page__table-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 767px) {
+  .dashboard-page__category-item {
+    gap: 10px;
+  }
+
+  .dashboard-page__category-value {
+    gap: 8px;
+  }
+
+  .dashboard-page__monthly-chart {
+    min-height: 320px;
+  }
+}
+
+.dashboard-page__charts {
+  margin-top: 16px;
+}
+
+.dashboard-page__card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.dashboard-page__card-title {
+  margin: 0 0 4px !important;
+}
+
+.dashboard-page__chart-navigation {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dashboard-page__chart-navigation .ant-btn {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.dashboard-page__monthly-chart {
+  width: 100%;
+  min-height: 360px;
+}
+
+.dashboard-page__category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.dashboard-page__category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dashboard-page__category-item:last-child {
+  border-bottom: none;
+}
+
+.dashboard-page__category-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-page__category-dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+}
+
+.dashboard-page__category-value {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.dashboard-page__table-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 767px) {
+  .dashboard-page__category-item {
+    gap: 10px;
+  }
+
+  .dashboard-page__category-value {
+    gap: 8px;
+  }
+
+  .dashboard-page__monthly-chart {
+    min-height: 320px;
+  }
+
+  .dashboard-page__card-header {
+    align-items: center;
+  }
+}

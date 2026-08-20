@@ -1,0 +1,99 @@
+.profile-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.profile-page__content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 48px 56px;
+}
+
+.profile-page__header {
+  margin-bottom: 32px;
+}
+
+.profile-page__title {
+  margin-bottom: 8px !important;
+}
+
+.profile-page__description {
+  margin-bottom: 0;
+  color: #6b7280;
+}
+
+.profile-page__card {
+  border-radius: 12px;
+}
+
+.profile-page__identity {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.profile-page__name {
+  margin: 0 0 4px !important;
+}
+
+.profile-page__email {
+  margin: 0;
+  color: #6b7280;
+}
+
+@media (max-width: 1023px) {
+  .profile-page__content {
+    padding: 32px 24px 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .profile-page__content {
+    padding: 24px 16px 40px;
+  }
+
+  .profile-page__header {
+    margin-bottom: 24px;
+  }
+
+  .profile-page__title {
+    font-size: 28px !important;
+  }
+
+  .profile-page__identity {
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 479px) {
+  .profile-page__content {
+    padding: 20px 12px 32px;
+  }
+
+  .profile-page__identity {
+    flex-direction: column;
+  }
+
+  .profile-page__title {
+    font-size: 24px !important;
+  }
+}
+
+.profile-page__danger-card {
+  margin-top: 24px;
+  border-radius: 12px;
+}
+
+.profile-page__danger-title {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+@media (max-width: 767px) {
+  .profile-page__danger-card {
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,21 @@
+.summary-card {
+  height: 100%;
+  border-radius: 12px;
+}
+
+.summary-card .ant-statistic-title {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.summary-card .ant-statistic-content {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .summary-card .ant-statistic-content {
+    font-size: 24px;
+  }
+}

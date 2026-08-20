@@ -1,0 +1,20 @@
+.recent-transactions {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.recent-transactions__title {
+  margin-top: 0 !important;
+  margin-bottom: 24px !important;
+  font-size: 20px !important;
+}
+
+@media (max-width: 767px) {
+  .recent-transactions {
+    border-radius: 8px;
+  }
+
+  .recent-transactions__title {
+    font-size: 18px !important;
+  }
+}
