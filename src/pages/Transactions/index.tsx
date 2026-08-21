@@ -19,7 +19,7 @@ import {
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import { useEffect, useState } from 'react';
-
+import { useAuth } from '../../context/AuthContext';
 import AppNavigation from '../../components/AppNavigation';
 import ExpenseForm from '../../components/ExpenseForm';
 
@@ -42,6 +42,7 @@ const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const Transactions = (): React.JSX.Element => {
+  const {user} = useAuth();
   const [expenses, setExpenses] =
     useState<Expense[]>([]);
 
@@ -68,7 +69,13 @@ const Transactions = (): React.JSX.Element => {
       setLoadError(null);
 
       try {
-        const response = await getExpenses();
+        if (user === null) {
+          setExpenses([]);
+          return;
+        }
+
+        const response =
+          await getExpenses(user.id);
 
         setExpenses(response);
       } catch {
@@ -82,14 +89,21 @@ const Transactions = (): React.JSX.Element => {
 
   useEffect(() => {
     void handleLoadExpenses();
-  }, []);
+  }, [user]);
 
   const handleCreateExpense = async (
     values: CreateExpenseRequest,
   ): Promise<void> => {
     try {
+      if (user === null) {
+        return;
+      }
+
       const createdExpense =
-        await createExpense(values);
+        await createExpense(
+          values,
+          user.id,
+        );
 
       setExpenses((currentExpenses) => [
         createdExpense,

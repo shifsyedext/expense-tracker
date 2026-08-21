@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://localhost:3001',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -10,7 +10,9 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = sessionStorage.getItem('expense_tracker_token');
+    const token = sessionStorage.getItem(
+      'expense_tracker_token',
+    );
 
     if (token !== null) {
       config.headers.Authorization = `Bearer ${token}`;

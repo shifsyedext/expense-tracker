@@ -24,7 +24,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-
+import { useAuth } from '../../context/AuthContext';
 import AppNavigation from '../../components/AppNavigation';
 import { getExpenses } from '../../api/expenseService';
 import type { Expense } from '../../types/expense';
@@ -81,6 +81,7 @@ const CATEGORY_COLORS: Record<
 };
 
 const Dashboard = (): React.JSX.Element => {
+  const { user } = useAuth();
   const [expenses, setExpenses] =
     useState<Expense[]>([]);
 
@@ -91,22 +92,29 @@ const Dashboard = (): React.JSX.Element => {
     useState<number>(0);
 
   useEffect(() => {
-    const loadExpenses = async (): Promise<void> => {
-      try {
-        const response = await getExpenses();
+  const loadExpenses = async (): Promise<void> => {
+    if (user?.id === undefined) {
+      setExpenses([]);
+      setIsLoading(false);
+      return;
+    }
 
-        setExpenses(response);
-      } catch {
-        message.error(
-          'Unable to load dashboard data.',
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    try {
+      const response =
+        await getExpenses(user.id);
 
-    void loadExpenses();
-  }, []);
+      setExpenses(response);
+    } catch {
+      message.error(
+        'Unable to load dashboard data.',
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  void loadExpenses();
+}, [user?.id]);
 
   const totalExpenses = useMemo(
     () =>
